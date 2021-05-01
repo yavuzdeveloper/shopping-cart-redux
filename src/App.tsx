@@ -1,12 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import{ data } from './data';
+//import Button from '@atlaskit/button';
+import { Link } from 'react-router-dom';
+import Products from './Products';
+import Cart from './Cart';
+import { Route } from "react-router-dom";
+import { connect } from 'react-redux'; //store bağlanmak
+import { BookType } from './types';
 
-function App() {
+
+const App = (props:any) => {  //console.log("BOOKLİST:", props.bookList)
+  const [state, setState] = useState({
+    bookList: data,
+    cart: []
+  })
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <h3>shopping cart </h3>
+         <div>
+            <Link to="/">Go shopping</Link></div>
+            <div style={{float:"right"}}>
+              <Link to="/cart">My Cart</Link>
+            </div>
+            
+          
+        
+        {/* <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -17,10 +40,18 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
+        </a> */}
       </header>
+        <Route exact path="/" component={Products} />
+        <Route path="/cart" component={Cart} />
+  
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state:any) => {
+  return {
+    bookList : state.bookList
+  }
+}
+export default connect(mapStateToProps)(App);
