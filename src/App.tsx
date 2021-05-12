@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import{ data } from './data';
+//import{ data } from './data';
 //import Button from '@atlaskit/button';
 import { Link } from 'react-router-dom';
 import Products from './Products';
 import Cart from './Cart';
 import { Route } from "react-router-dom";
-import { connect } from 'react-redux'; //store bağlanmak
-import { BookType } from './types';
+//import { connect } from 'react-redux'; //store bağlanmak
+//import { Book,  CartOfType } from './types';
 
 
-const App = (props:any) => {  //console.log("BOOKLİST:", props.bookList)
-  const [state, setState] = useState({
-    bookList: data,
-    cart: []
-  })
+const App = (props:any) => {  //console.log("BOOKS-App:", props.books)
 
   return (
     <div className="App">
@@ -49,9 +45,10 @@ const App = (props:any) => {  //console.log("BOOKLİST:", props.bookList)
   );
 }
 
-const mapStateToProps = (state:any) => {
-  return {
-    bookList : state.bookList
-  }
-}
-export default connect(mapStateToProps)(App);
+// const mapStateToProps = (state:any) => { //App comp. de ihtiyacımız yok aslında
+//   return {
+//     books: state.books,
+//   }
+// }
+// export default connect(mapStateToProps)(App);
+export default App;

@@ -1,38 +1,35 @@
 import './App.css';
-import{ data } from './data';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'; //store bağlanmak
 import { addToCart } from './actions'
-//import { BookType } from './types';
+import { Book, CartModel } from './types';
+import { ReducerState } from './reducers';
 
 
-const Products = (props:any) => {
-  console.log("PROPS-BOOK",props.bookList);
-  console.log("CART:",props.cart);
-
+const Products = (props:{ books: Book[], addToCart: Function}) => {
   return (
     <div>
-
-      <div className="book">
+      <div>
         <h3>BOOKS</h3>
-          {data.map(book => (<div>
-            <img src={book.image} alt={book.name}  />
-            <p>{book.name}</p>
-            <p>price: {book.price}$</p>
-            <p>{book.author}</p>
-            <button onClick={()=> props.addToCart(book)}>Add to Cart</button>
-          </div>
+          {props.books.map((book:Book) => (
+            <div className="book">
+              <img src={book.image} alt={book.name} />
+                <div className="bookContent"  key={book.id}>
+                  <h4>{book.name}</h4>
+                  <p>Price: {book.price}£</p>
+                  <p>Author: {book.author}</p>
+                  <button onClick={()=> props.addToCart(book)}>Add to Cart</button>
+                </div>
+            </div>
           ))}
-  
       </div>
     </div>
   );
 }
 
-const mapStateToProps = (state:any) =>{
+const mapStateToProps = (state:ReducerState) => {
   return{
-    bookList: state.bookList,
-    cart: state.cart
+    books: state.books,
   }
 }
 

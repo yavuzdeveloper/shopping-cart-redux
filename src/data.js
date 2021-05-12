@@ -1,12 +1,13 @@
 export const data = [
     {
-      "id": 1,
-      "name": "My Little girl",
-      "author": "Shalini Boland",
-      "price": 0.99,
-      "image":
+      id: 1,
+      name: "My Little girl",
+      author: "Shalini Boland",
+      price: 0.99,
+      image:
         "https://images-eu.ssl-images-amazon.com/images/I/51Gd+G0pnyL._SY375_.jpg"
-    },
+     }
+     ,
     {
       id: 2,
       name: "Near You",
