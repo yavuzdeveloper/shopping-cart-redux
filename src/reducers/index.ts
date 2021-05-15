@@ -1,10 +1,11 @@
 import { data } from "../data";
-import { Action } from "redux";
+//import { Action } from "redux";
 import { createStore } from "redux";
 import { Book,  CartModel, CartItem, 
     ADD_TO_CART, REMOVE_FROM_CART, INCREASE_CART, DECREASE_CART, ListAction } from '../types';
-import Cart from "../Cart";
-import { isTemplateExpression } from "typescript";
+// import Cart from "../Cart";
+// import { isTemplateExpression } from "typescript";
+
 
 
 export interface ReducerState { 
@@ -22,51 +23,57 @@ export const  reducer = (
     state: ReducerState = INITIAL_STATE,
     action: ListAction
 ): ReducerState => {
+    let items = state.cart.items;
     switch (action.type) {
         case ADD_TO_CART:  
-            const addBook = state.cart.items.find(item => item.book.id === action.payload.id) 
+            const addBook = items.find(item => item.book.id === action.payload.id) 
             if(addBook){
                 addBook.count = addBook.count + 1; 
             }else{ 
-                state.cart.items.push({ count:1, book:action.payload }); 
+                items.push({ count:1, book:action.payload }); 
             }  
-            return state;
-        
+        return {
+            ...state,
+                cart: {items}
+        }
+  
         case INCREASE_CART: 
-            const increaseBook = state.cart.items.find(item => item.book.id === action.payload.id)
-            if(increaseBook){                            
-                increaseBook.count = increaseBook.count + 1;   console.log("COUNT:",increaseBook.count);
-            } 
-            // state.cart.items.map(item=> item.book.id === action.payload.id){
-            //     item.count = item.count + 1;
-            // }
-            return state;        
+            items.map(item => item.book.id === action.payload.id 
+                    ? item.count = item.count + 1 : item )
+            return {
+                ...state,
+                cart: {items} // {items:items}
+            }
+
+        case DECREASE_CART:
+            const decreaseBook = items.find(item => item.book.id === action.payload.id)
+            if(decreaseBook){ 
+                if(decreaseBook.count > 1){
+                    decreaseBook.count = decreaseBook.count - 1 
+                } else {
+                    decreaseBook.count = 1  
+                }     console.log("DCREASE:",decreaseBook.count);
+            }  
+            return {
+                ...state,
+                cart: {items}
+            }
             
-
-
-
-        //     ...state, card: state.card.map(item => item.id === action.payload.id 
-        //         ? {...item, count: item.count + 1}: item)
-        
-        // case REMOVE_FROM_CART:
-        //     state.cart.items.filter(item => item.book.id !== action.payload.id){
-        //         state.cart.items.push()
-        //     }    
-        //     return state;
-
-        // case DECREASE_CARD:
-        //     return {
-        //         ...state, card: state.card.map(item => item.id === action.payload.id 
-        //         ? {...item, count: item > 1 ? item.count - 1 : 1}: item) 
-        //     }
-
-
-
+        case REMOVE_FROM_CART:
+            const removeBook = items.filter(item => item.book.id !== action.payload.id) 
+            return {
+                ...state,
+                cart: {items:removeBook}
+            }
         default:
             return state;
     }
 };
 export const store = createStore(reducer);
+
+ 
+
+
 
 
 

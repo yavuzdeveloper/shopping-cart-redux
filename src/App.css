@@ -41,4 +41,13 @@
 .bookContent{
   justify-content: left;
  }
+.empty{
+  display: flex;
+  justify-content: center;
+  color: rgb(219, 16, 16);
+}
 
+.App > header > h3 > img {
+  width: 22px;
+  padding: 0 0 0 10px;
+}

@@ -16,12 +16,19 @@ const App = (props:any) => {  //console.log("BOOKS-App:", props.books)
   return (
     <div className="App">
       <header className="App-header">
-        <h3>shopping cart </h3>
-         <div>
-            <Link to="/">Go shopping</Link></div>
-            <div style={{float:"right"}}>
-              <Link to="/cart">My Cart</Link>
-            </div>
+        <h3>Shopping Cart
+          <img
+          src="https://avatars3.githubusercontent.com/u/60869810?v=4"
+          alt="shopping cart with react-redux-typescript"
+        />  
+        </h3>
+
+          {/* <div>
+            <Link to="/">Go shopping</Link>
+          </div>
+          <div style={{float:"right"}}>
+            <Link to="/cart">My Cart</Link>
+          </div> */}
             
           
         

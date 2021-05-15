@@ -6,11 +6,17 @@ import { Book, CartModel } from './types';
 import { ReducerState } from './reducers';
 
 
-const Products = (props:{ books: Book[], addToCart: Function}) => {
+const Products = (props:{ books: Book[], addToCart: Function,  cart:CartModel }) => {
   return (
     <div>
+       <h3>
+          <span style={{padding:"0 0 0 10px"}}>Products</span>
+          <div style={{float:"right", padding:"0 10px 0 0"}}>
+            <Link to="/cart">My Cart({ props.cart.items.reduce((total, item) => (total += item.count), 0 )})</Link>
+          </div>
+          </h3>
       <div>
-        <h3>BOOKS</h3>
+        {/* <h3>BOOKS</h3> */}
           {props.books.map((book:Book) => (
             <div className="book">
               <img src={book.image} alt={book.name} />
@@ -30,9 +36,11 @@ const Products = (props:{ books: Book[], addToCart: Function}) => {
 const mapStateToProps = (state:ReducerState) => {
   return{
     books: state.books,
+    cart: state.cart 
   }
 }
 
-const mapActionsToProps = ({ addToCart })
+// const mapActionsToProps = ({ addToCart })
+// export default connect (mapStateToProps, mapActionsToProps)(Products);
 
-export default connect (mapStateToProps, mapActionsToProps)(Products);
+export default connect (mapStateToProps,{ addToCart })(Products);
