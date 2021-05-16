@@ -7,13 +7,6 @@ import { Link } from 'react-router-dom';
 
 const Cart = (props:{ cart:CartModel, decrease:Function, 
     removeFromCart: Function, increase: Function}) => { 
-        // console.log("AAAA1: ",props);
-        // console.log("CART: ",props.cart);
-    // const subtotal : number = 0;
-    // props.cart.items.map((item:CartItem) => {
-    // })
-    // const [cartEmpty, setCartEmpty] = useState(true);
-    // if(props.cart.items.length !== 0){ setCartEmpty(false) }
 
     
     const totalPrice = props.cart.items.reduce((total, item) => 
@@ -24,8 +17,7 @@ const Cart = (props:{ cart:CartModel, decrease:Function,
             <h3>
                 <Link to="/">Products</Link> 
                 <div style={{float:"right"}}>
-                    <span>My Cart ({ props.cart.items.reduce((total, item) => (total += item.count), 0 )})</span> <br/>
-                    {/* <span>Total Cart Price: £ {totalPrice.toFixed(2)}</span>    */}
+                    <span>My Cart ({ props.cart.items.reduce((total, item) => (total += item.count), 0 )})</span>
                 </div>    
             </h3>
             <div className="cart">
@@ -34,7 +26,6 @@ const Cart = (props:{ cart:CartModel, decrease:Function,
                    <h3>Your Cart Empty</h3>
                </div>
                }
-                {/* <h3>Total Cart Price: £ {totalPrice.toFixed(2)}</h3> */}
                 {props.cart.items.map((item:CartItem) => (
                 <div className="book"  key={item.book.id}>
                     <img src={item.book.image} alt={item.book.name}  />
@@ -68,5 +59,3 @@ const mapStateToProps = (state:ReducerState) => {
 // export default connect(mapStateToProps, mapActionsToProps)(Cart);
 
 export default connect(mapStateToProps, { removeFromCart, increase, decrease })(Cart);
-
-

@@ -29,7 +29,3 @@ export const decrease = (book:Book) => {
         payload: book
     }
 }
-
-// export const increase = (book:Book) => { 
-//     return { type: 'ADD_TO_CART', payload: book};
-// } 

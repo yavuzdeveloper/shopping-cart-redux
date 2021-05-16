@@ -21,7 +21,6 @@ interface DecreaseCartAction {
 }
 
 export type ListAction = AddCartAction | RemoveCartAction | IncreaseCartAction | DecreaseCartAction;
-//******* */
 
 export interface Book {
   id: number;
@@ -36,7 +35,6 @@ items: CartItem[];
 }
 
 export interface CartItem {
-  book: Book;      //array<book>
+  book: Book;      
   count: number;
 }
-
