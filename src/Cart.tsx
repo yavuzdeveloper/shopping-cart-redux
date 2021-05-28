@@ -36,7 +36,7 @@ const Cart = (props:{ cart:CartModel, decrease:Function,
                         <p>Count: {item.count}</p>
                         <p>Subtotal: {(item.book.price*item.count).toFixed(2)}£</p>
                         <button onClick={() => props.decrease(item.book)}>-</button>
-                        <button onClick={() => props.removeFromCart(item.book)}>Delete</button>
+                        <button onClick={() => props.removeFromCart(item.book)}>Remove</button>
                         <button onClick={() => props.increase(item.book)}>+</button>
                     </div>
                 </div>

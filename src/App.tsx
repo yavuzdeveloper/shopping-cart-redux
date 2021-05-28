@@ -10,7 +10,7 @@ const App = (props:any) => {
   return (
     <div className="App">
       <header className="App-header">
-        <h3>Shopping Cart
+        <h3>Shopping Cart with Redux
           <img
           src="https://avatars3.githubusercontent.com/u/60869810?v=4"
           alt="shopping cart with react"

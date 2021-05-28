@@ -1,8 +1,6 @@
 import { data } from "../data";
 import { createStore } from "redux";
-import { Book,  CartModel, CartItem, 
-    ADD_TO_CART, REMOVE_FROM_CART, INCREASE_CART, DECREASE_CART, ListAction } from '../types';
-
+import { Book,  CartModel, ADD_TO_CART, REMOVE_FROM_CART, INCREASE_CART, DECREASE_CART, ListAction } from '../types';
 
 
 export interface ReducerState { 
@@ -39,7 +37,7 @@ export const  reducer = (
                     ? item.count = item.count + 1 : item )
             return {
                 ...state,
-                cart: {items} // {items:items}
+                cart: {items}
             }
 
         case DECREASE_CART:
@@ -49,7 +47,7 @@ export const  reducer = (
                     decreaseBook.count = decreaseBook.count - 1 
                 } else {
                     decreaseBook.count = 1  
-                }     console.log("DCREASE:",decreaseBook.count);
+                }    
             }  
             return {
                 ...state,
@@ -57,10 +55,10 @@ export const  reducer = (
             }
             
         case REMOVE_FROM_CART:
-            const removeBook = items.filter(item => item.book.id !== action.payload.id) 
+            const itemToRemove = items.filter(item => item.book.id !== action.payload.id) 
             return {
                 ...state,
-                cart: {items:removeBook}
+                cart: {items:itemToRemove}
             }
         default:
             return state;
