@@ -35,6 +35,6 @@ items: CartItem[];
 }
 
 export interface CartItem {
-  book: Book;      
+  book: Book;       
   count: number;
 }
