@@ -55,7 +55,4 @@ const mapStateToProps = (state:ReducerState) => {
     }
 }
 
-// const mapActionsToProps = ({ removeFromCart, increase, decrease });
-// export default connect(mapStateToProps, mapActionsToProps)(Cart);
-
 export default connect(mapStateToProps, { removeFromCart, increase, decrease })(Cart);

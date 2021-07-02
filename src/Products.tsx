@@ -39,7 +39,5 @@ const mapStateToProps = (state:ReducerState) => {
   }
 }
 
-// const mapActionsToProps = ({ addToCart })
-// export default connect (mapStateToProps, mapActionsToProps)(Products);
 
 export default connect (mapStateToProps,{ addToCart })(Products);
